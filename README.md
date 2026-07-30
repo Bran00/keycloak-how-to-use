@@ -1,4 +1,3 @@
-Here’s the complete **README.md** in one single Markdown block, with everything included:
 
 ```markdown
 # Keycloak + MySQL with Docker Compose
