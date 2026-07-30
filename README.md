@@ -86,6 +86,14 @@ Do not use this version in **production**.
   3. Go to the **Role Mappings** tab.  
   4. Assign the role `admin` (or another appropriate realm role) to grant administrative privileges.  
 
+- Manage Realm
+  1. Log in to the **Keycloak Admin Console**.
+  2. Click the realm dropdown in the top-left corner.
+  3. Select **Create Realm**.
+  4. Enter the realm name.
+  5. Click **Create**.
+  6. Open the newly created realm to manage its users, roles, groups, clients, and settings.
+
 ---
 
 ## Useful Commands
