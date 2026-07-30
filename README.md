@@ -94,6 +94,15 @@ Do not use this version in **production**.
   5. Click **Create**.
   6. Open the newly created realm to manage its users, roles, groups, clients, and settings.
 
+- Roles and Groups
+  1. In the **Keycloak Admin Console**, select your realm.
+  2. To create a role, go to **Manage → Roles**.
+  3. Click **Create Role**, enter the role name, and save.
+  4. To create a group, go to **Manage → Groups**.
+  5. Click **Create Group**, enter the group name, and save.
+  6. To assign a user to a group, go to **Manage → Users**, select the user, and join the desired group.
+  7. To assign roles, open the user or group and use the **Role Mappings** tab.
+
 ---
 
 ## Useful Commands
