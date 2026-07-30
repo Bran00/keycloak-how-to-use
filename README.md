@@ -1,5 +1,3 @@
-
-```markdown
 # Keycloak + MySQL with Docker Compose
 
 This project sets up an authentication environment using **Keycloak** and **MySQL** with Docker Compose.
@@ -36,8 +34,8 @@ The `docker-compose.yml` file defines two services:
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/youruser/yourrepo.git
-   cd yourrepo
+   git clone https://github.com/Bran00/keycloak-how-to-use
+   cd keycloak-how-to-use
    ```
 
 2. Start the containers:
