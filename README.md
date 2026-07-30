@@ -111,6 +111,16 @@ Do not use this version in **production**.
   6. Save the changes.
   7. Users will be able to select their preferred language on the login page.
 
+- Clients
+  1. In the **Keycloak Admin Console**, select your realm.
+  2. Go to **Manage → Clients**.
+  3. Click **Create Client**.
+  4. Enter a **Client ID** and select the desired protocol (usually **OpenID Connect**).
+  5. Click **Next** and configure the client settings.
+  6. Define the **Valid Redirect URIs** for your application.
+  7. Save the client configuration.
+  8. Use the generated client credentials in your application to enable authentication through Keycloak.
+
 ---
 
 ## Useful Commands
