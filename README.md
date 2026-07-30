@@ -66,6 +66,8 @@ Do not use this version in **production**.
 
 ## How to Use
 
+### Basic
+
 - **Users and Passwords**  
   To add users and set passwords:  
   1. Log in to the Keycloak Admin Console.  
@@ -99,6 +101,15 @@ Do not use this version in **production**.
   5. Click **Create Group**, enter the group name, and save.
   6. To assign a user to a group, go to **Manage → Users**, select the user, and join the desired group.
   7. To assign roles, open the user or group and use the **Role Mappings** tab.
+
+- Internationalization and Translation
+  1. In the **Keycloak Admin Console**, select your realm.
+  2. Go to **Realm Settings → Localization**.
+  3. Enable **Internationalization**.
+  4. Add the languages you want to support.
+  5. Set a **Default Language**.
+  6. Save the changes.
+  7. Users will be able to select their preferred language on the login page.
 
 ---
 
