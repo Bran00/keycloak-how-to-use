@@ -121,6 +121,10 @@ Do not use this version in **production**.
   7. Save the client configuration.
   8. Use the generated client credentials in your application to enable authentication through Keycloak.
 
+### JWT Token 
+
+- Keycloak have support for JWT Token, so you can include this feature in your aplication.
+
 ---
 
 ## Useful Commands
