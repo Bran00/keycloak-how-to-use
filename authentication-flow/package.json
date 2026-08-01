@@ -2,7 +2,7 @@
   "name": "app",
   "version": "1.0.0",
   "scripts": {
-    "start": "nodemon --exec ts-node-esm ./authentication-code-flow/src/index.ts"
+    "authorization-code": "nodemon --exec ts-node-esm ./authentication-code-flow/src/index.ts"
   },
   "type": "module",
   "devDependencies": {
