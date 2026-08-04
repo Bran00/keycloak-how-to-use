@@ -64,7 +64,20 @@ export function getAuth() {
   }
 }
 
-export function makeLogoutUrl(): string {
-  // lógica para gerar a URL de logout
-  return "https://meu-servidor/logout";
+export function makeLogoutUrl() {
+  if (!Cookies.get("id_token")) {
+    return false;
+  }
+  const logoutParams = new URLSearchParams({
+    //client_id: "fullcycle-client",
+    id_token_hint: Cookies.get("id_token") as string,
+    post_logout_redirect_uri: "http://localhost:3000/login",
+  });
+
+  Cookies.remove("access_token");
+  Cookies.remove("id_token");
+  Cookies.remove("nonce");
+  Cookies.remove("state");
+
+  return `http://localhost:8080/realms/fullcycle-realm/protocol/openid-connect/logout?${logoutParams.toString()}`;
 }

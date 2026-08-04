@@ -6,7 +6,7 @@ import type { JWTPayload } from "jose";
 type AuthContextProps = {
   auth: JWTPayload | null;
   makeLoginUrl: () => string;
-  makeLogoutUrl: () => string;
+  makeLogoutUrl: () => string | false;
   login: (accessToken: string, idToken: string, state: string) => JWTPayload;
   logout: () => void;
 };
