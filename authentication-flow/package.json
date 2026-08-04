@@ -4,6 +4,9 @@
   "scripts": {
     "authorization-code": "nodemon --exec ts-node-esm ./authentication-code-flow/src/index.ts"
   },
+  "workspaces": [
+    "implicit-flow"
+  ],
   "type": "module",
   "devDependencies": {
     "@types/express": "^5.0.6",
