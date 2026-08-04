@@ -1,4 +1,7 @@
-import { createBrowserRouter } from "react-router-dom"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { Login } from "./Login";
+import { Logout } from "./Logout";
+import { Callback } from "./Callback";
 
 
 const router = createBrowserRouter([
@@ -10,14 +13,14 @@ const router = createBrowserRouter([
     path: "logout",
     element: <Logout />,
   },
-  {
-    path: "admin",
-    element: (
-      <PrivateRoute>
-        <Admin />
-      </PrivateRoute>
-    ),
-  },
+  // {
+  //   path: "admin",
+  //   element: (
+  //     <PrivateRoute>
+  //       <Admin />
+  //     </PrivateRoute>
+  //   ),
+  // },
   {
     path: "callback",
     element: <Callback />,
@@ -25,11 +28,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return (
-    <div>
-      <h1>Implicit flow</h1>
-    </div>
-  )
+  return <RouterProvider router={router} />;
 }
 
 export default App
