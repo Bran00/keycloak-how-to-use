@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import { Login } from "./Login";
 import { Logout } from "./Logout";
 import { Callback } from "./Callback";
+import { AuthProvider } from "./AuthProvider";
+import { Admin } from "./Admin";
 
 const router = createBrowserRouter([
   {
@@ -12,14 +14,10 @@ const router = createBrowserRouter([
     path: "logout",
     element: <Logout />,
   },
-  // {
-  //   path: "admin",
-  //   element: (
-  //     <PrivateRoute>
-  //       <Admin />
-  //     </PrivateRoute>
-  //   ),
-  // },
+  {
+    path: "admin",
+    element: <Admin />,
+  },
   {
     path: "callback",
     element: <Callback />,
@@ -27,7 +25,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  )
 }
 
 export default App
