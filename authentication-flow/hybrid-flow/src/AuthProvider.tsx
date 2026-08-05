@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import type { PropsWithChildren } from "react";
 import * as utils from "./utils";
 import type { JWTPayload } from "jose";
@@ -6,54 +6,69 @@ import type { JWTPayload } from "jose";
 type AuthContextProps = {
   auth: JWTPayload | null;
   makeLoginUrl: () => string;
-  makeLogoutUrl: () => string | false;
-  login: (accessToken: string, idToken: string, state: string) => JWTPayload;
-  logout: () => void;
+  makeLogoutUrl: () => string;
+  login: (
+    accessToken: string,
+    idToken: string,
+    code: string,
+    state: string
+  ) => JWTPayload;
 };
 
-// Funções padrão seguras (evitam chamadas fora do provider)
-const defaultContext: AuthContextProps = {
+const initContextData: AuthContextProps = {
   auth: null,
-  makeLoginUrl: () => {
-    throw new Error("makeLoginUrl chamado fora do AuthProvider");
-  },
-  makeLogoutUrl: () => {
-    throw new Error("makeLogoutUrl chamado fora do AuthProvider");
-  },
+  makeLoginUrl: utils.makeLoginUrl,
+  makeLogoutUrl: utils.makeLogoutUrl,
+  // placeholders para evitar chamadas fora do provider
   login: () => {
     throw new Error("login chamado fora do AuthProvider");
   },
-  logout: () => {
-    throw new Error("logout chamado fora do AuthProvider");
-  },
 };
 
-export const AuthContext = createContext<AuthContextProps>(defaultContext);
+// cria o contexto
+export const AuthContext = createContext(initContextData);
 
-export const AuthProvider = ({ children }: PropsWithChildren) => {
+// cria o provider
+export const AuthProvider = (props: PropsWithChildren) => {
   const [data, setData] = useState<AuthContextProps>({
     auth: utils.getAuth(),
     makeLoginUrl: utils.makeLoginUrl,
     makeLogoutUrl: utils.makeLogoutUrl,
-    login: (accessToken, idToken, state) => {
-      const authData = utils.login(accessToken, idToken, state);
+    login: () => {
+      throw new Error("login chamado fora do AuthProvider");
+    },
+  });
+
+  const makeLogin = useCallback(
+    (accessToken: string, idToken: string, code: string, state: string) => {
+      // login inicial
+      const authData = utils.login(accessToken, idToken, null, state);
       setData((oldData) => ({
         ...oldData,
         auth: authData,
       }));
+
+      // troca de código por token
+      utils.exchangeCodeForToken(code).then((authData) => {
+        setData((oldData) => ({
+          ...oldData,
+          auth: authData,
+        }));
+      });
+
       return authData;
     },
-    logout: () => {
-      setData((oldData) => ({
-        ...oldData,
-        auth: null,
-      }));
-    },
-  });
+    []
+  );
+
+  // injeta a função de login no state depois que ela é criada
+  useEffect(() => {
+    setData((oldData) => ({ ...oldData, login: makeLogin }));
+  }, [makeLogin]);
 
   return (
     <AuthContext.Provider value={data}>
-      {children}
+      {props.children}
     </AuthContext.Provider>
   );
 };
