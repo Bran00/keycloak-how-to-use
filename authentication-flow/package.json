@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "authorization-code": "nodemon --exec ts-node-esm ./authentication-code-flow/src/index.ts",
-    "implicit": "cd implicit-flow && npm run dev"
+    "implicit": "cd implicit-flow && npm run dev",
+    "hybrid": "cd hybrid-flow && npm run dev",
+    "resource-owner": "nodemon --exec ts-node-esm ./resource-owner-password-credentials/src/index.ts"
   },
   "workspaces": [
     "implicit-flow",
